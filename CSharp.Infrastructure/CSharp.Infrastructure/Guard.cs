@@ -16,7 +16,7 @@ namespace CSharp.Infrastructure
             _disposed = false;
         }
 
-        T Item
+        public T Item
         {
             get
             {

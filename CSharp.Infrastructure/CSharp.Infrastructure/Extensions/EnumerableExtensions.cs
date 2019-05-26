@@ -9,24 +9,6 @@ namespace CSharp.Infrastructure.Extensions
         public static IEnumerable<T> OrEmpty<T>(this IEnumerable<T> self) =>
             self ?? Enumerable.Empty<T>();
 
-        public static IEnumerable<string> AlternativeCase(this IEnumerable<string> self) =>
-            self.Select(Alternative);
-
-        public static string Alternative(string word) =>
-            word.Select((letter, position) => position % 2 == 0 ? char.ToUpper(letter) : char.ToLower(letter))
-                .Join(with: string.Empty);
-
-        public static string Join(this IEnumerable<string> self, char with) =>
-            string.Join(with.ToString(), self);
-
-        public static IEnumerable<string> Split(this string self, char by) =>
-            self.Split(by);
-
-        public static string Join(this IEnumerable<char> self, string with) =>
-            string.Join(with, self);
-
-        public static bool IsNullOrWhiteSpace(this string self) =>
-            string.IsNullOrWhiteSpace(self);
 
         public static void ForEach<T>(this IEnumerable<T> self, Action<T> action)
         {
@@ -39,7 +21,7 @@ namespace CSharp.Infrastructure.Extensions
             }
         }
 
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> self, T appended) where T: class
+        public static IEnumerable<T> Append<T>(this IEnumerable<T> self, T appended) where T : class
         {
             self.EnsureArgs();
             appended.EnsureArgs();
@@ -52,9 +34,10 @@ namespace CSharp.Infrastructure.Extensions
             yield return appended;
         }
 
-        public static IEnumerable<T> Prepend<T>(this IEnumerable<T> self, T prepended)
+        public static IEnumerable<T> Prepend<T>(this IEnumerable<T> self, T prepended) where T : class
         {
             self.EnsureArgs();
+            prepended.EnsureArgs();
 
             yield return prepended;
 
