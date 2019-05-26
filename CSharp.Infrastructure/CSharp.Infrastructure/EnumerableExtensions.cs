@@ -30,15 +30,19 @@ namespace CSharp.Infrastructure
 
         public static void ForEach<T>(this IEnumerable<T> self, Action<T> action)
         {
+            self.EnsureArgs();
+            action.EnsureArgs();
+
             foreach (var value in self)
             {
                 action(value);
             }
         }
 
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> self, T appended)
+        public static IEnumerable<T> Append<T>(this IEnumerable<T> self, T appended) where T: class
         {
             self.EnsureArgs();
+            appended.EnsureArgs();
 
             foreach (var element in self)
             {
@@ -62,6 +66,9 @@ namespace CSharp.Infrastructure
 
         public static bool EndsWith<T>(this IEnumerable<T> self, IEnumerable<T> suffix)
         {
+            self.EnsureArgs();
+            suffix.EnsureArgs();
+
             var leftCount = self.Count();
             var rightCount = suffix.Count();
 
@@ -96,6 +103,9 @@ namespace CSharp.Infrastructure
 
         public static bool StartsWith<T>(this IEnumerable<T> self, IEnumerable<T> prefix)
         {
+            self.EnsureArgs();
+            prefix.EnsureArgs();
+
             using (var selfIterator = self.GetEnumerator())
             using (var prefixIterator = prefix.GetEnumerator())
             {
