@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp.Infrastructure
+namespace CSharp.Infrastructure.Extensions
 {
     public static class MathematicsExtensions
     {
