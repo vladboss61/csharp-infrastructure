@@ -31,10 +31,10 @@ namespace CSharp.Infrastructure
 
         public T Get<T>(Func<T, bool> predicate) =>
             _cache.TryGetValue(typeof(T), out var instance) ? instance.Cast<T>().First(predicate)
-                : throw new InvalidOperationException($"Does not know about {typeof(T).Name}");
+                : throw new InvalidOperationException($"Does not know about {typeof(T).Name}.");
 
         public List<T> Get<T>() =>
             _cache.TryGetValue(typeof(T), out var instance) ? instance.Cast<T>().OrEmpty().ToList()
-                : throw new InvalidOperationException($"Does not know about {typeof(T).Name}");
+                : throw new InvalidOperationException($"Does not know about {typeof(T).Name}.");
     }
 }

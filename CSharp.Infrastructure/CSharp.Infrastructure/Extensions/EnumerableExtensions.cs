@@ -9,6 +9,8 @@ namespace CSharp.Infrastructure.Extensions
         public static IEnumerable<T> OrEmpty<T>(this IEnumerable<T> self) =>
             self ?? Enumerable.Empty<T>();
 
+        public static IEnumerable<Tuple<int, T>> Index<T>(this IEnumerable<T> self) =>
+            self.Select((item, index) => new Tuple<int, T>(index, item));
 
         public static void ForEach<T>(this IEnumerable<T> self, Action<T> action)
         {
