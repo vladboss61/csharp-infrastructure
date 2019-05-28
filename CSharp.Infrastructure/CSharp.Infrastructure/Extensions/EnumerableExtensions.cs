@@ -6,6 +6,12 @@ namespace CSharp.Infrastructure.Extensions
 {
     public static class EnumerableExtensions
     {
+
+        public static bool IsEmpty<T>(IEnumerable<T> self) => 
+            !self.Any();
+
+
+
         public static IEnumerable<T> OrEmpty<T>(this IEnumerable<T> self) =>
             self ?? Enumerable.Empty<T>();
 
@@ -14,8 +20,8 @@ namespace CSharp.Infrastructure.Extensions
 
         public static void ForEach<T>(this IEnumerable<T> self, Action<T> action)
         {
-            self.EnsureArgs();
-            action.EnsureArgs();
+            self.EnsureNotNull();
+            action.EnsureNotNull();
 
             foreach (var value in self)
             {
@@ -25,8 +31,8 @@ namespace CSharp.Infrastructure.Extensions
 
         public static IEnumerable<T> Append<T>(this IEnumerable<T> self, T appended) where T : class
         {
-            self.EnsureArgs();
-            appended.EnsureArgs();
+            self.EnsureNotNull();
+            appended.EnsureNotNull();
 
             foreach (var element in self)
             {
@@ -38,8 +44,8 @@ namespace CSharp.Infrastructure.Extensions
 
         public static IEnumerable<T> Prepend<T>(this IEnumerable<T> self, T prepended) where T : class
         {
-            self.EnsureArgs();
-            prepended.EnsureArgs();
+            self.EnsureNotNull();
+            prepended.EnsureNotNull();
 
             yield return prepended;
 
@@ -51,8 +57,8 @@ namespace CSharp.Infrastructure.Extensions
 
         public static bool EndsWith<T>(this IEnumerable<T> self, IEnumerable<T> suffix)
         {
-            self.EnsureArgs();
-            suffix.EnsureArgs();
+            self.EnsureNotNull();
+            suffix.EnsureNotNull();
 
             var leftCount = self.Count();
             var rightCount = suffix.Count();
@@ -88,8 +94,8 @@ namespace CSharp.Infrastructure.Extensions
 
         public static bool StartsWith<T>(this IEnumerable<T> self, IEnumerable<T> prefix)
         {
-            self.EnsureArgs();
-            prefix.EnsureArgs();
+            self.EnsureNotNull();
+            prefix.EnsureNotNull();
 
             using (var selfIterator = self.GetEnumerator())
             using (var prefixIterator = prefix.GetEnumerator())
@@ -107,7 +113,12 @@ namespace CSharp.Infrastructure.Extensions
             return true;
         }
 
-        private static void EnsureArgs<T>(this T self) where T : class
+        public static int IndexOf<TSource>(this IEnumerable<TSource> self, Func<TSource, bool> predicate)
+        {
+            return self.TakeWhile(item => !predicate(item)).Count();
+        }
+
+        public static void EnsureNotNull<T>(this T self) where T : class
         {
             if (self == null)
             {

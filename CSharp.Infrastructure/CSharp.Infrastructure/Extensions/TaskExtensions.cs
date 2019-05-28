@@ -11,5 +11,11 @@ namespace CSharp.Infrastructure.Extensions
         {
             return self.ContinueWith(x => next(x.Result)).Unwrap();
         }
+
+        public static async Task Asynchronously(this Action move)
+        {
+            await Task.Yield();
+            move();
+        }
     }
 }
