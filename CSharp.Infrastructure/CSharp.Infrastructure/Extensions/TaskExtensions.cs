@@ -14,8 +14,15 @@ namespace CSharp.Infrastructure.Extensions
 
         public static async Task Asynchronously(this Action move)
         {
+            move.EnsureNotNull();
             await Task.Yield();
             move();
+        }
+
+        public static Task<T> Asynchronously<T>(this Func<T> work)
+        {
+            work.EnsureNotNull();
+            return Task.Run((() => work()));
         }
     }
 }

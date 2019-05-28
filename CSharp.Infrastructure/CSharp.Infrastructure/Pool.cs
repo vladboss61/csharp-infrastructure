@@ -6,6 +6,7 @@ namespace CSharp.Infrastructure
 {
     public class Pool<T> : IPool<T> where T : class
     {
+        private readonly static object sync = new object();
         private readonly ConcurrentQueue<T> _bag;
         private readonly Func<T> _factory;
         private readonly T _item;
@@ -31,12 +32,12 @@ namespace CSharp.Infrastructure
                 return new Guard<T>(item, this);
             }
 
-            if (_item != null)
+            lock (sync)
             {
-                return new Guard<T>(_item, this);
+                return _item != null 
+                    ? new Guard<T>(_item, this) 
+                    : new Guard<T>(_factory(), this);
             }
-
-            return new Guard<T>(_factory(), this);
         }
 
         public void Return(T item)
