@@ -6,7 +6,7 @@ namespace CSharp.Infrastructure.Extensions
 {
     public static class EnumerableExtensions
     {
-        public static bool IsEmpty<T>(IEnumerable<T> self) => 
+        public static bool IsEmpty<T>(this IEnumerable<T> self) => 
             !self.Any();
 
         public static IEnumerable<T> OrEmpty<T>(this IEnumerable<T> self) =>

@@ -22,7 +22,7 @@ namespace CSharp.Infrastructure
             {
                 if (_disposed)
                 {
-                    throw new ObjectDisposedException(nameof(_item));
+                    throw new ObjectDisposedException(nameof(Guard<T>));
                 }
 
                 return _item;
@@ -31,11 +31,29 @@ namespace CSharp.Infrastructure
 
         public void Dispose()
         {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _pool.Return(_item);
+                _disposed = true;
+                return;
+            }
+
             if (!_disposed)
             {
                 _pool.Return(_item);
             }
             _disposed = true;
+        }
+
+        ~Guard()
+        {
+            Dispose(false);
+            GC.SuppressFinalize(this);
         }
     }
 }

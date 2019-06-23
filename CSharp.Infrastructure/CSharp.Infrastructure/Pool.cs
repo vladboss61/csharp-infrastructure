@@ -6,7 +6,7 @@ namespace CSharp.Infrastructure
 {
     public class Pool<T> : IPool<T> where T : class
     {
-        private readonly static object sync = new object();
+        private static readonly object sync = new object();
         private readonly ConcurrentQueue<T> _bag;
         private readonly Func<T> _factory;
         private readonly T _item;
