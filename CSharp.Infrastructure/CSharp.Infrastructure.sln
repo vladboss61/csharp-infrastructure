@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28902.138
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.Infrastructure", "CSharp.Infrastructure\CSharp.Infrastructure.csproj", "{3129D715-AB2F-45BF-A99A-DD0BCD4DB563}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharp.Infrastructure", "CSharp.Infrastructure\CSharp.Infrastructure.csproj", "{3129D715-AB2F-45BF-A99A-DD0BCD4DB563}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.Infrastructure.Test", "CSharp.Infrastructure.Test\CSharp.Infrastructure.Test.csproj", "{D4C0A4F8-1F3B-47AD-BC8E-AAEB0BB8BDF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3129D715-AB2F-45BF-A99A-DD0BCD4DB563}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3129D715-AB2F-45BF-A99A-DD0BCD4DB563}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3129D715-AB2F-45BF-A99A-DD0BCD4DB563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C0A4F8-1F3B-47AD-BC8E-AAEB0BB8BDF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C0A4F8-1F3B-47AD-BC8E-AAEB0BB8BDF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C0A4F8-1F3B-47AD-BC8E-AAEB0BB8BDF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C0A4F8-1F3B-47AD-BC8E-AAEB0BB8BDF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
