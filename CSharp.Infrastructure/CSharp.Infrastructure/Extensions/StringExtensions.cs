@@ -30,10 +30,13 @@ namespace CSharp.Infrastructure.Extensions
             {
                 Boundary.IncludeLeftSide =>
                     self.Substring(startIndex, length - 1),
+
                 Boundary.IncludeRightSide=>
                     self.Substring(startIndex + 1, length - 1),
+
                 Boundary.IncludeBothSide =>
                     self.Substring(startIndex, length),
+
                 _ =>
                     throw new ArgumentOutOfRangeException(nameof(boundary), boundary, null)
             };
