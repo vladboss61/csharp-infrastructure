@@ -10,13 +10,13 @@ namespace CSharp.Infrastructure.Test
         [Fact]
         public void TestExtensionStringsSubstring()
         {
-            var resultActual1 = "string_short".Substring(1, 4, Boundary.IncludeBoth);
+            var resultActual1 = "string_short".Substring(1, 4, Boundary.IncludeBothSide);
             Assert.Equal("trin", resultActual1);
 
-            var resultActual2 = "string_short".Substring(1, 4, Boundary.IncludeLeft);
+            var resultActual2 = "string_short".Substring(1, 4, Boundary.IncludeLeftSide);
             Assert.Equal("tri", resultActual2);
 
-            var resultActual3 = "string_short".Substring(1, 4, Boundary.IncludeRight);
+            var resultActual3 = "string_short".Substring(1, 4, Boundary.IncludeRightSide);
             Assert.Equal("rin", resultActual3);
         }
 

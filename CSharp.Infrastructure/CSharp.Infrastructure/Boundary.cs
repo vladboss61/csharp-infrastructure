@@ -2,10 +2,10 @@
 {
     public enum Boundary
     {
-        IncludeLeft,
+        IncludeLeftSide,
 
-        IncludeRight,
+        IncludeRightSide,
 
-        IncludeBoth
+        IncludeBothSide
     }
 }

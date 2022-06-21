@@ -28,11 +28,11 @@ namespace CSharp.Infrastructure.Extensions
         public static string Substring(this string self, int startIndex, int length, Boundary boundary) => 
             boundary switch 
             {
-                Boundary.IncludeLeft =>
+                Boundary.IncludeLeftSide =>
                     self.Substring(startIndex, length - 1),
-                Boundary.IncludeRight =>
+                Boundary.IncludeRightSide=>
                     self.Substring(startIndex + 1, length - 1),
-                Boundary.IncludeBoth =>
+                Boundary.IncludeBothSide =>
                     self.Substring(startIndex, length),
                 _ =>
                     throw new ArgumentOutOfRangeException(nameof(boundary), boundary, null)
