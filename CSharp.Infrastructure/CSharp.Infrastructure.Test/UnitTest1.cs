@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using CSharp.Infrastructure.Extensions;
 using CSharp.Infrastructure.Interfaces;
@@ -9,6 +7,19 @@ namespace CSharp.Infrastructure.Test
 {
     public sealed class UnitTest1
     {
+        [Fact]
+        public void TestExtensionStringsSubstring()
+        {
+            var resultActual1 = "string_short".Substring(1, 4, Boundary.IncludeBoth);
+            Assert.Equal("trin", resultActual1);
+
+            var resultActual2 = "string_short".Substring(1, 4, Boundary.IncludeLeft);
+            Assert.Equal("tri", resultActual2);
+
+            var resultActual3 = "string_short".Substring(1, 4, Boundary.IncludeRight);
+            Assert.Equal("rin", resultActual3);
+        }
+
         [Fact]
         public void TestExtensionOfType()
         {

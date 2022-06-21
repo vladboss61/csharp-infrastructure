@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CSharp.Infrastructure.Extensions
@@ -23,5 +24,18 @@ namespace CSharp.Infrastructure.Extensions
 
         public static bool IsNullOrWhiteSpace(this string self) =>
             string.IsNullOrWhiteSpace(self);
+
+        public static string Substring(this string self, int startIndex, int length, Boundary boundary) => 
+            boundary switch 
+            {
+                Boundary.IncludeLeft =>
+                    self.Substring(startIndex, length - 1),
+                Boundary.IncludeRight =>
+                    self.Substring(startIndex + 1, length - 1),
+                Boundary.IncludeBoth =>
+                    self.Substring(startIndex, length),
+                _ =>
+                    throw new ArgumentOutOfRangeException(nameof(boundary), boundary, null)
+            };
     }
 }
