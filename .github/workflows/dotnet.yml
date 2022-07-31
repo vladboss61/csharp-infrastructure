@@ -17,11 +17,18 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+
     - name: Restore dotnet dependencies
       run: |
         cd CSharp.Infrastructure/CSharp.Infrastructure
         dotnet restore
+
     - name: Build
       run: |
         cd CSharp.Infrastructure/CSharp.Infrastructure
-        dotnet build --no-restore
+        dotnet build --configuration Release --no-restore
+
+    - name: Test
+      run: |
+        cd CSharp.Infrastructure/CSharp.Infrastructure
+        dotnet test --no-restore --verbosity normal
